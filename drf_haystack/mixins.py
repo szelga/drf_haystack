@@ -36,7 +36,7 @@ class SearchMixin(object):
         return query
 
     def get_serializer_context(self):
-        context = super(SearchAPIViewMixin, self).get_serializer_context()
+        context = super(SearchMixin, self).get_serializer_context()
         highlighter = self.get_highlighter(self.get_query())
         if highlighter:
             context['highlighter'] = highlighter
