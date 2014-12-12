@@ -49,7 +49,7 @@ setup(
 
     install_requires=[
         'django-haystack>=2',
-        'djangorestframework>=2.4<3.0',
+        'djangorestframework>=2.4,<3',
     ],
 
     extras_require = {
