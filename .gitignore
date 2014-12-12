@@ -4,3 +4,5 @@ syntax: glob
 *.swp
 *.pyc
 *.pyo
+env/*
+docs/_build/*
