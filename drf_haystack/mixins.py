@@ -15,6 +15,7 @@ class SearchMixin(object):
     highlighter_class = Highlighter # set to None for no highligthing
 
     search_parameter = 'q'
+    search_field = 'text'
     
     load_all = False
 
@@ -45,13 +46,15 @@ class SearchMixin(object):
     def get_empty_queryset(self, qs): # if query is empty
         return qs.none()
 
-    def get_queryset(self):
-        qs = self.queryset
+    def filter_queryset(self, qs):
         query = self.get_query()
         if query == '':
             return self.get_empty_queryset(qs)
         else:
-            qs = qs.filter(text=query)
+            kwargs = {
+                self.search_field: query,
+            }
+            qs = qs.filter(**kwargs)
             if self.load_all:
                 return qs.load_all()
             else:
